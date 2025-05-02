@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guía: Subir Proyecto a GitHub</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="section">
+    <h1>📁 Guía: Subir un Proyecto Local a GitHub</h1>
+    <p><strong>Versión:</strong> 1.0</p>
+    <p><strong>Autor:</strong> Yosh Pardo</p>
+    <p><strong>Fecha:</strong> 02/05/2025</p>
+  </div>
+
+  <div class="section">
+    <h2>🔧 Requisitos Previos</h2>
+    <ul>
+      <li>Git instalado (<code>git --version</code>).</li>
+      <li>Cuenta en GitHub y repositorio remoto creado.</li>
+      <li>Archivos de tu proyecto listos para subir.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>📌 Pasos para Subir un Proyecto</h2>
+    <h3>1. Crear un Repositorio en GitHub</h3>
+    <ol>
+      <li>Inicia sesión en GitHub.</li>
+      <li>Haz clic en <strong>"New repository"</strong>.</li>
+      <li>Asigna un nombre y deja el repositorio vacío.</li>
+      <li>Copia la URL del repositorio (ej: <code>https://github.com/tu-usuario/mi-proyecto.git</code>).</li>
+    </ol>
+
+    <h3>2. Configurar Git Localmente</h3>
+    <pre><code>git config --global user.name "TuNombre"
+git config --global user.email "tu-email@example.com"</code></pre>
+
+    <h3>3. Inicializar el Repositorio Local</h3>
+    <pre><code>cd ruta/de/tu/proyecto
+git init
+git add .
+git commit -m "Primer commit"</code></pre>
+
+    <h3>4. Conectar con el Repositorio Remoto</h3>
+    <pre><code>git remote add origin https://github.com/tu-usuario/mi-proyecto.git
+git remote -v</code></pre>
+
+    <h3>5. Subir los Archivos a GitHub</h3>
+    <p><strong>Caso 1: Repositorio Remoto Vacío</strong></p>
+    <pre><code>git push -u origin main</code></pre>
+
+    <p><strong>Caso 2: Repositorio Remoto con Archivos</strong></p>
+    <pre><code>git pull origin main --allow-unrelated-histories
+git add .
+git commit -m "Merge historial remoto"
+git push origin main</code></pre>
+
+    <p><strong>Caso 3: Forzar Subida (Solo si trabajas solo)</strong></p>
+    <pre><code>git push --force origin main</code></pre>
+  </div>
+
+  <div class="section error">
+    <h2>⚠️ Errores Comunes y Soluciones</h2>
+    <p><strong>Error: <code>fatal: refusing to merge unrelated histories</code></strong></p>
+    <p><strong>Solución:</strong> Usa <code>--allow-unrelated-histories</code> al hacer <code>pull</code> o <code>merge</code>.</p>
+
+    <p><strong>Error: <code>[rejected - non-fast-forward]</code></strong></p>
+    <p><strong>Solución:</strong> Actualiza tu rama local con <code>git pull origin main</code>.</p>
+  </div>
+
+  <div class="section tip">
+    <h2>💡 Consejos Adicionales</h2>
+    <ul>
+      <li>Usa ramas secundarias (<code>dev</code>, <code>feature</code>) para evitar conflictos.</li>
+      <li>Personaliza tu editor de Git (ej: VS Code):</li>
+      <pre><code>git config --global core.editor "code --wait"</code></pre>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>📄 Ejemplo Completo</h2>
+    <pre><code>git init
+git add .
+git commit -m "Primer commit"
+git remote add origin https://github.com/tu-usuario/mi-proyecto.git
+git pull origin main --allow-unrelated-histories
+git add .
+git commit -m "Merge historial"
+git push origin main</code></pre>
+  </div>
+</body>
+</html>
